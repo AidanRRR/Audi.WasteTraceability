@@ -1,0 +1,26 @@
+<div class="row dialog__header">
+  <div class="small-12 align-self-middle columns">
+    <h6 class="dialog__title">Barcode herafdrukken</h6>
+  </div>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <div class="dialog__form__element text-center">
+      <label>Voorbeeld</label>
+      <br>
+      <div id="print-this" class="text-center dialog__barcode__wrapper">
+        <qrcode
+          version="{{ vm.qrConfig.version }}"
+          error-correction-level="{{ vm.qrConfig.errorCorrectionLevel }}"
+          size="{{ vm.qrConfig.size }}"
+          data="{{ ngDialogData.barcode }}"
+        ></qrcode>
+        <p class="dialog__barcodemeta">{{ ngDialogData.barcode }}</p>
+      </div>
+    </div>
+    <div class="dialog__form__element text-center">
+      <button class="primary" ng-click="vm.print()">Printen</button>
+    </div>
+  </div>
+</div>

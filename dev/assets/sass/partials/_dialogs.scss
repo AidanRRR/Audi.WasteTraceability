@@ -1,0 +1,116 @@
+.ngdialog.dialog {
+  text-align: left;
+  padding-top: 50px;
+
+  .ngdialog-close {
+    right: 5px;
+    top: 10px;
+  }
+
+  .ngdialog-content {
+    background: $white;
+    width: 550px;
+    padding: 0;
+    border-radius: 0;
+
+    @include breakpoint(small down) {
+      width: 95%;
+      margin: auto;
+    }
+  }
+
+  .dialog__header {
+    background: map-get($foundation-palette, primary);
+
+    .dialog__title {
+      margin: 0;
+      padding: 20px 0;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: $white;
+    }
+  }
+
+  .dialog__form__error {
+    display: block;
+    background: map-get($foundation-palette, alert);
+    color: $white;
+    padding: 5px;
+    font-weight: bold;
+
+    &.error--main {
+      padding: 10px 15px;;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .dialog__body {
+    padding: 25px;
+
+    .dialog__form__element {
+      margin-bottom: 25px;
+    }
+
+    .container__type__input {
+      display: inline-block;
+
+      input[type="radio"]  {
+        margin: 0 5px 0 0;
+      }
+
+      span[class*="color--"] {
+        display: inline-block;
+        vertical-align: middle;
+        width: 50px;
+        height: 12px;
+        margin-right: 20px;
+
+        &.color--yellow { background: $yellow; }
+        &.color--orange { background: $orange; }
+        &.color--black { background: $black; }
+        &.color--lightgray { background: $lightgray; }
+      }
+    }
+
+    label {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+
+      .note {
+        font-size: 10px;
+        font-weight: normal;
+        color: lighten($black, 50%);
+        margin-left: 5px;
+
+        &.newline {
+          margin: 0;
+        }
+      }
+    }
+
+    input[type="text"] {
+      border: 1px solid lighten(map-get($foundation-palette, primary), 50%);
+
+      &.barcode__text__field {
+        text-transform: uppercase;
+
+        &.has__error {
+          border-color: map-get($foundation-palette, alert);
+        }
+      }
+    }
+
+    .dialog__barcode__wrapper {
+      width: 200px;
+      margin: auto;
+    }
+
+    .dialog__barcodemeta {
+      text-transform: uppercase;
+    }
+  }
+}

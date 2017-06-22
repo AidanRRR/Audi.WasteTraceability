@@ -1,0 +1,83 @@
+<div class="row dialog__header">
+  <div class="small-12 align-self-middle columns">
+    <h6 class="dialog__title">Nieuwe locatie toevoegen</h6>
+  </div>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <form name="newlocationForm" novalidate>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <div class="dialog__form__element">
+            <label for="building">Gebouw <span class="note">Toegestane characters: 0-9 - % . / +</span></label>
+            <input id="building" class="barcode__text__field" ng-model="location.location" type="text" list="buildings" required>
+            <datalist id="buildings">
+              <option ng-repeat="building in vm.locations" value="{{ building.name }}">{{ building.name }}</option>
+            </datalist>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <div class="dialog__form__element">
+            <label for="department">Afdeling <br><span class="note newline">Toegestane characters: 0-9 - % . / +</span></label>
+            <input id="department" class="barcode__text__field" ng-model="location.department" ng-change="vm.onChangeSelectedDepartment(location.department)" type="text" list="departments" required>
+            <datalist id="departments">
+              <option ng-repeat="(key, val) in vm.departments" value="{{ key }}">{{ key }}</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="small-12 medium-6 columns">
+          <div class="dialog__form__element">
+            <label for="costcenter">Kostenplaats <br><span class="note newline">Toegestane characters: 0-9 - % . / +</span></label>
+            <input id="costcenter" class="barcode__text__field" ng-disabled="vm.existing" ng-class="{ 'has__error': vm.validationErrors.costcenter }" ng-model="location.costcenter" type="text" required>
+            <span ng-if="vm.validationErrors.costcenter" class="dialog__form__error">{{ vm.validationErrors.costcenter }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <div class="dialog__form__element">
+            <label for="floor">Verdieping <br><span class="note newline">Toegestane characters: 0-9 - % . / +</span></label>
+            <input id="floor" class="barcode__text__field" ng-class="{ 'has__error': vm.validationErrors.floor }" ng-model="location.floor" type="text" required>
+            <span ng-if="vm.validationErrors.floor" class="dialog__form__error">{{ vm.validationErrors.floor }}</span>
+          </div>
+        </div>
+        <div class="small-12 medium-6 columns">
+          <div class="dialog__form__element">
+            <label for="pillar">Kolom <br><span class="note newline">Toegestane characters: 0-9 - % . / +</span></label>
+            <input id="pillar" class="barcode__text__field" ng-class="{ 'has__error': vm.validationErrors.pillar }" ng-model="location.pillar" type="text" required>
+            <span ng-if="vm.validationErrors.pillar" class="dialog__form__error">{{ vm.validationErrors.pillar }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog__form__element text-center">
+        <label>Voorbeeld</label>
+        <div id="print-this" class="text-center dialog__barcode__wrapper">
+          <qrcode
+            version="{{ vm.qrConfig.version }}"
+            error-correction-level="{{ vm.qrConfig.errorCorrectionLevel }}"
+            size="{{ vm.qrConfig.size }}"
+            data="{{ location.location }}::{{ location.department }}::{{ location.costcenter }}::{{ location.floor }}::{{ location.pillar }}"
+          ></qrcode>
+          <p class="dialog__barcodemeta">{{ location.location }}::{{ location.department }}::{{ location.costcenter }}::{{ location.floor }}::{{ location.pillar }}</p>
+        </div>
+      </div>
+      <div class="dialog__form__element text-center">
+        <button ng-disabled="newlocationForm.$invalid || vm.saving" class="primary" ng-click="vm.addNewLocation(location)">
+          <span ng-if="!vm.saving">Opslaan</span>
+          <span ng-if="vm.saving">
+            <i class="fa fa-refresh fa-spin fa-fw"></i>
+            <span>Bezig met opslaan..</span>
+          </span>
+        </button>
+        <button ng-disabled="newlocationForm.$invalid || vm.saving" class="primary" ng-click="vm.print()">Printen</button>
+      </div>
+    </form>
+  </div>
+</div>

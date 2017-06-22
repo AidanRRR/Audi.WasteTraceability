@@ -1,0 +1,37 @@
+<div class="small-12 columns table__filter__panel__content">
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Status:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus.all}">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus, true)" ng-model="vm.filters.containerStatus.all" name="checkbox">Alle
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus['Verkeerd gesorteerd'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus)" ng-model="vm.filters.containerStatus['Verkeerd gesorteerd']" name="checkbox">Verkeerd gesorteerd
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus['Defecte container'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus)" ng-model="vm.filters.containerStatus['Defecte container']" name="checkbox">Defecte container
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Datum:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerDate.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerDate, true, 'date')" ng-model="vm.filters.containerDate.all" name="checkbox">Alle
+      </label>
+      <datepicker date-format="dd/MM/yyyy">
+        <input ng-model="vm.filters.containerDate.from" ng-change="vm.updateFilter(vm.filters.containerDate)" type="text"/>
+      </datepicker>
+      <datepicker date-format="dd/MM/yyyy">
+        <input ng-model="vm.filters.containerDate.till" ng-change="vm.updateFilter(vm.filters.containerDate)" type="text"/>
+      </datepicker>
+    </div>
+  </div>
+</div>
+<div class="small-12 columns table__filter__panel__actions">
+  <button ng-click="vm.resetFilterValues()">Standaarwaarden herstellen</button>
+</div>

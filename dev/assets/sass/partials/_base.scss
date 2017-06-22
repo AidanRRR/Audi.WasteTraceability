@@ -1,0 +1,65 @@
+.browserupgrade {
+  background: map-get($foundation-palette, primary);
+  color: $white;
+  padding: 20px;
+  font-size: 12px;
+
+  a {
+    color: #FFF;
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-bold;
+}
+
+a {
+  &:active,
+  &:focus,
+  &:visited {
+    outline: 0;
+  }
+}
+
+div[ng-view] {
+  background: $white;
+  margin: 25px;
+
+  @include breakpoint(medium down) {
+    margin: 25px;
+  }
+
+  @include breakpoint(small down) {
+    margin: 0;
+  }
+}
+
+.fill-parent-height {
+  height: 100%;
+}
+
+.content-wrapper {
+  padding: 20px 10px 10px 10px;
+
+  @include breakpoint(medium down) {
+    padding: 10px 0;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-this,
+  #print-this * {
+    visibility: visible;
+  }
+
+  #print-this {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

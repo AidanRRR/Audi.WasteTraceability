@@ -1,0 +1,160 @@
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info {
+  display: none;
+}
+
+.table__filter__fixed__offset {
+  display: none;
+}
+
+.table__filter {
+  position: relative;
+  background: map-get($foundation-palette, primary);
+  color: $white;
+  @include anim(.2s);
+
+  &.table__filter__fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    + .table__filter__fixed__offset {
+      display: block;
+      height: 90px;
+    }
+
+    .table__filter__main {
+      padding: 20px;
+    }
+  }
+
+  .table__filter__main {
+    padding: 40px 30px;
+    @include anim(.2s);
+
+    @include breakpoint(medium down) {
+      padding: 20px;
+    }
+  }
+
+  .table__filter__button {
+    .fa {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  }
+
+  .table__filter__settings {
+    vertical-align: bottom;
+
+    .fa {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}
+
+.table__filter__panel {
+  .table__filter__panel__content {
+    background: lighten(map-get($foundation-palette, primary), 10%);
+    padding: 15px;
+  }
+
+  .row:nth-child(even) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 2px solid lighten(map-get($foundation-palette, primary), 15%);
+    border-bottom: 2px solid lighten(map-get($foundation-palette, primary), 15%);
+  }
+
+  label {
+    font-size: 12px;
+    color: $white;
+    font-weight: bold;
+
+    @include breakpoint(small down) {
+      margin-bottom: 15px;
+    }
+  }
+
+  .table__filter__panel__filter {
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 35px;
+    color: lighten(map-get($foundation-palette, primary), 40%);
+    border: 2px solid lighten(map-get($foundation-palette, primary), 40%);
+    border-radius: 20px;
+    @include anim(.2s);
+
+    &.selected,
+    &:hover {
+      border-color: $white;
+      color: $white;
+    }
+
+    &:nth-child(even) {
+      margin: 0 10px;
+    }
+
+    input {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
+  select {
+    background-color: transparent;
+    color: lighten(map-get($foundation-palette, primary), 40%);
+    border: 2px solid lighten(map-get($foundation-palette, primary), 40%);
+    height: 36px;
+    width: 30%;
+    margin-left: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+
+    &.selected {
+      color: $white;
+      border-color: $white;
+    }
+  }
+
+  datepicker {
+    display: inline-block;
+    width: 30%;
+    float: none;
+    margin-left: 10px;
+
+    input {
+      border-radius: 20px;
+      padding: 5px 35px;
+      height: 36px;
+      background: transparent;
+      color: lighten(map-get($foundation-palette, primary), 40%);
+      border: 2px solid lighten(map-get($foundation-palette, primary), 40%);
+      font-weight: bold;
+
+      &.selected {
+        color: $white;
+        border-color: $white;
+      }
+    }
+  }
+
+  .table__filter__panel__actions {
+    background: lighten(map-get($foundation-palette, primary), 15%);
+
+    button,
+    a {
+      padding: 0;
+      font-weight: bold;
+      margin-right: 30px;
+      color: $white;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div class="row expanded table__filter" scroll>
+  <div class="small-12 columns">
+    <div class="row expanded collapse table__filter__main">
+      <div class="small-10 medium-9 columns">
+        <input ng-model="keywordfilter" type="search" placeholder="Filter op zoekterm"/>
+      </div>
+      <div class="small-2 medium-3 columns text-right align-self-bottom">
+        <button class="white" ng-csv="vm.locations" csv-header="vm.csvHeader" field-separator=";" filename="Locaties.csv">
+          <span class="hide-for-large"><i class="fa fa-download " aria-hidden="true"></i></span>
+          <span class="hide-for-small-only hide-for-medium-only">Exporteren als CSV</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table__filter__fixed__offset"></div>
+
+<div class="row expanded content-wrapper">
+  <div class="columns">
+    <div class="table__loader" ng-if="vm.tableLoading">
+      <i class="fa fa-refresh fa-spin fa-fw"></i>
+      <span>Locatie overzicht laden...</span>
+    </div>
+    <table class="hover stack" datatable="ng" dt-options="vm.dtOptions">
+      <thead>
+        <tr>
+          <th>Gebouw</th>
+          <th>Afdeling</th>
+          <th>Kostenplaats</th>
+          <th>Verdieping</th>
+          <th>Kolom</th>
+          <th>Barcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="location in vm.locations | filter: keywordfilter">
+          <td>{{ location.location_name }}</td>
+          <td>{{ location.department_name }}</td>
+          <td>{{ location.costcenter_name }}</td>
+          <td>{{ location.floor }}</td>
+          <td>{{ location.pillar }}</td>
+          <td>
+            <a ng-click="vm.viewBarcode(location.barcode)" href="">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+              {{ location.barcode }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

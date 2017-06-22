@@ -1,0 +1,22 @@
+$global-font-size: 12px;
+
+$font-normal: 'AudiTypeExtendedNormal', Verdana, sans-serif;
+$font-bold: 'AudiTypeExtendedBold', Verdana, sans-serif;
+
+$body-font-family: Verdana, sans-serif;
+
+$black: #000;
+$lightgray: #828282;
+$white: #FFF;
+$orange: #FF8800;
+$yellow: #F6E13C;
+
+$foundation-palette: (
+  primary: #434C53,
+  secondary: #E7E9EA,
+  success: #2C9E4B,
+  warning: #EDBA23,
+  alert: #DB042D,
+);
+
+$body-background: map-get($foundation-palette, secondary);

@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'AudiTypeExtendedNormal';
+    src: url('../fonts/AudiType-ExtendedNormal.eot');
+    src: url('../fonts/AudiType-ExtendedNormal.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AudiType-ExtendedNormal.woff') format('woff'),
+         url('../fonts/AudiType-ExtendedNormal.ttf') format('truetype'),
+         url('../fonts/AudiType-ExtendedNormal.svg#AudiType-ExtendedNormal') format('svg');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'AudiTypeExtendedBold';
+    src: url('../fonts/AudiType-ExtendedBold.eot');
+    src: url('../fonts/AudiType-ExtendedBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AudiType-ExtendedBold.woff') format('woff'),
+         url('../fonts/AudiType-ExtendedBold.ttf') format('truetype'),
+         url('../fonts/AudiType-ExtendedBold.svg#AudiType-ExtendedBold') format('svg');
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}

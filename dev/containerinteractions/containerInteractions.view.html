@@ -1,0 +1,101 @@
+<div class="row expanded table__filter" scroll>
+  <div class="small-12 columns">
+    <div class="row expanded collapse table__filter__main">
+      <div class="small-8 medium-6 columns">
+        <input ng-model="keywordfilter" type="search" placeholder="Filter op zoekterm"/>
+      </div>
+      <div class="small-2 medium-3 columns">
+        <button class="white table__filter__button" ng-click="filterPanelOpen = !filterPanelOpen">
+          <i class="fa fa-sliders" aria-hidden="true"></i>
+          <span class="hide-for-small-only hide-for-medium-only">Filter resultaten</span>
+        </button>
+      </div>
+      <div class="small-2 medium-3 columns text-right align-self-bottom">
+        <button class="white" ng-csv="vm.filteredActions" csv-header="vm.csvHeader" field-separator=";" filename="containers-ledigingen.csv">
+          <span class="hide-for-large"><i class="fa fa-download " aria-hidden="true"></i></span>
+          <span class="hide-for-small-only hide-for-medium-only">Exporteren als CSV</span>
+        </button>
+      </div>
+    </div>
+    <div ng-if="filterPanelOpen" ng-include="vm.filterPanel" class="row expanded table__filter__panel"></div>
+  </div>
+</div>
+<div class="table__filter__fixed__offset"></div>
+
+<div class="row expanded content-wrapper">
+  <div class="columns">
+    <div class="table__loader" ng-if="vm.tableLoading">
+      <i class="fa fa-refresh fa-spin fa-fw"></i>
+      <span>Container acties laden...</span>
+    </div>
+    <div class="row">
+      <div class="columns">
+        <p>Totaal aantal gevonden acties: <b>{{ vm.filteredActions.length }}</b></p>
+      </div>
+    </div>
+    <br>
+    <table class="hover stack" datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.DTColumnDefBuilder">
+      <thead>
+        <tr>
+          <th class="text-center">Status</th>
+          <th>Container #</th>
+          <th class="text-center">Kleur</th>
+          <th>Afvalstroom</th>
+          <th class="text-center">Afdeling</th>
+          <th class="text-center">Gebouw</th>
+          <th class="text-center">Kostenplaats</th>
+          <th class="text-center">Verdieping</th>
+          <th class="text-center">Kolom</th>
+          <th class="text-center">Actie</th>
+          <th class="text-center">Datum leging</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          ng-repeat="container in vm.filteredActions = (vm.actions | typeFilter: vm.filters.containerType | newStatusFilter: vm.filters.containerStatus | actionFilter: vm.filters.containerAction | newWasteflowFilter: vm.filters.containerWasteflow | departmentFilter: vm.filters.containerDepartment | locationFilter: vm.filters.containerLocation | newDateFilter: vm.filters.containerDate | filter: keywordfilter)"
+        >
+          <td class="text-center {{ container.status }}">
+            <i ng-if="container.status == 'ok'" class="fa fa-check-circle"><span class="icon__text">a</span></i>
+            <i ng-if="container.status == 'error'" class="fa fa-exclamation-triangle"><span class="icon__text">c</span></i>
+          </td>
+          <td>{{ container.con_name }}</td>
+          <td class="text-center" ng-switch on="container.ct_type">
+            <span ng-switch-default class="container--black">
+              <span class="icon__text">a</span>
+            </span>
+            <span ng-switch-when="yellow" class="container--yellow">
+              <span class="icon__text">b</span>
+            </span>
+            <span ng-switch-when="orange" class="container--orange">
+              <span class="icon__text">c</span>
+            </span>
+          </td>
+          <td>
+            {{ container.wasteflow }}
+          </td>
+          <td class="text-center">
+            {{ container.department }}
+          </td>
+          <td class="text-center">
+            {{ container.building }}
+          </td>
+          <td class="text-center">
+            {{ container.cost_center }}
+          </td>
+          <td class="text-center">
+            {{ container.floor }}
+          </td>
+          <td class="text-center">
+            {{ container.column }}
+          </td>
+          <td class="text-center">
+            {{ container.action }}
+          </td>
+          <td class="text-center">
+            {{ container.date }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

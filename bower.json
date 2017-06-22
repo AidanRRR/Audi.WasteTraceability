@@ -1,0 +1,35 @@
+{
+  "name": "Base",
+  "description": "Base Website Template",
+  "main": "gulpfile.js",
+  "authors": [
+    "Florian Ramakers"
+  ],
+  "license": "UNLICENSED",
+  "moduleType": [],
+  "homepage": "http://florianramakers.me",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "AUTHORS*",
+    "LICENSE*",
+    "README*"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.0",
+    "angular": "1.5.8",
+    "angular-route": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-datatables": "^0.5.5",
+    "font-awesome": "^4.6.3",
+    "angularjs-datepicker": "^2.1.6",
+    "ng-dialog": "^0.6.4",
+    "ng-csv": "^0.3.6",
+    "angular-qrcode": "monospaced/angular-qrcode#^6.2.1",
+    "moment": "^2.15.1"
+  }
+}

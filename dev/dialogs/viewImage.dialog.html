@@ -1,0 +1,11 @@
+<div class="row dialog__header">
+  <div class="small-12 align-self-middle columns">
+    <h6 class="dialog__title">Foto {{ ngDialogData.type }}</h6>
+  </div>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <img ng-src="{{ vm.url }}{{ ngDialogData.id }}" alt="Foto {{ ngDialogData.type }}"/>
+  </div>
+</div>

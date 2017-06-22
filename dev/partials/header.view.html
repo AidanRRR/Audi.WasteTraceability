@@ -1,0 +1,70 @@
+<div class="row fill-parent-height small-collapse large-uncollapse expanded align-middle">
+  <div class="small-8 columns">
+    <a href="/">
+      <img class="header__logo" src="/app/assets/img/logo.svg" alt="Logo Audi"/>
+    </a>
+    <h6 class="header__title" ng-bind-html="vm.pageTitle"></h6>
+  </div>
+  <div class="small-4 text-right columns">
+    <button ng-click="vm.barcodeIsOpen = !vm.barcodeIsOpen" class="primary header__barcode__actions">
+      <span class="hide-for-large"><i class="fa fa-bars" aria-hidden="true"></i></span>
+      <span class="hide-for-small-only hide-for-medium-only">Menu <i class="fa fa-angle-down"></i></span>
+    </button>
+  </div>
+
+  <div ng-if="vm.barcodeIsOpen" class="header__barcode__dropdown">
+    <ul>
+      <li>
+        <a class="main__link" href="/" ng-click="vm.barcodeIsOpen = false">
+          bekijk alle containers
+        </a>
+        <a class="new__button" href="" ng-click="vm.barcodeIsOpen = false; vm.newDialog('newContainer')">
+          Nieuw
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="alternate">
+        <a class="main__link" href="/locations" ng-click="vm.barcodeIsOpen = false">
+          Bekijk alle locaties
+        </a>
+        <a class="new__button" ng-click="vm.barcodeIsOpen = false; vm.newDialog('newLocation')" href="">
+          Nieuw
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="main__link" href="/containers/interactions" ng-click="vm.barcodeIsOpen = false">
+          Bekijk alle interacties
+          <i class="fa fa-history" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="alternate">
+        <a class="main__link" ng-click="vm.barcodeIsOpen = false; vm.newDialog('newWasteflow')" href="">
+          Beheer afvalstromen
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="warning">
+        <a class="main__link" href="/containers/deactivated" ng-click="vm.barcodeIsOpen = false">
+          Bekijk gedeactiveerde containers
+          <i class="fa fa-archive" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div ng-if="vm.notification.show" class="header__notification {{ vm.notification.status }}">
+  <div class="row expanded medium-collapse">
+    <div class="columns">
+      <div class="header__notification__icon" ng-switch on="vm.notification.status">
+        <i ng-switch-default class="fa fa-check-circle" aria-hidden="true"></i>
+        <i ng-switch-when="warning" class="fa fa-question-circle" aria-hidden="true"></i>
+        <i ng-switch-when="error" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      </div>
+      <div class="header__notification__message">
+        <p>{{ vm.notification.message }}</p>
+      </div>
+    </div>
+  </div>
+</div>

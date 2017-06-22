@@ -1,0 +1,56 @@
+<div class="row dialog__header">
+  <div class="small-12 align-self-middle columns">
+    <h6 class="dialog__title">Nieuwe afvalstroom toevoegen</h6>
+  </div>
+</div>
+
+<div ng-if="vm.wasteflowError" class="dialog__form__error error--main">
+  <p>{{ vm.wasteflowError }}</p>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <form name="newWasteflowForm" novalidate>
+      <div class="dialog__form__element">
+        <label for="wasteflowNameNL">Nederlandstalige benaming</label>
+        <input id="wasteflowNameNL" ng-model="wasteflow.nameNL" type="text" required>
+      </div>
+      <div class="dialog__form__element">
+        <label for="wasteflowNameFR">Franstalige benaming</label>
+        <input id="wasteflowNameFR" ng-model="wasteflow.nameFR" type="text" required>
+      </div>
+      <button ng-disabled="newWasteflowForm.$invalid || vm.saving" class="primary" ng-click="vm.addNewWasteflow(wasteflow)">
+        <span ng-if="!vm.saving">Afvalstroom Opslaan</span>
+        <span ng-if="vm.saving">
+          <i class="fa fa-refresh fa-spin fa-fw"></i>
+          <span>Bezig met opslaan..</span>
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <table class="stacked hover">
+      <thead>
+        <tr>
+          <th>Afvalstroom NL</th>
+          <th>Afvalstroom FR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="vm.isLoading">
+          <td>
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+            <span>Afvalstromen laden...</span>
+          </td>
+        </tr>
+        <tr ng-repeat="wasteflow in vm.wasteflows">
+          <td>{{ wasteflow.name_nl }}</td>
+          <td>{{ wasteflow.name_fr }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="row expanded table__filter" scroll>
+  <div class="small-12 columns">
+    <div class="row expanded collapse table__filter__main">
+      <div class="small-5 medium-5 columns">
+        <input ng-model="keywordfilter" type="search" placeholder="Filter op zoekterm"/>
+      </div>
+      <div class="small-2 medium-3 columns">
+        <button class="white table__filter__button" ng-click="filterPanelOpen = !filterPanelOpen">
+          <i class="fa fa-sliders" aria-hidden="true"></i>
+          <span class="hide-for-small-only hide-for-medium-only">Filter resultaten</span>
+        </button>
+      </div>
+      <div class="small-5 medium-4 columns text-right align-self-bottom">
+        <button class="white has--icon" ng-click="vm.viewBarcode(vm.containerInfo.bc_barcode)">
+          <i class="fa fa-barcode" aria-hidden="true"></i>
+        </button>
+        <button
+          class="white"
+          ng-csv="vm.filteredActions"
+          csv-header="vm.csvHeader"
+          field-separator=";"
+          filename="container-{{ vm.containerInfo.con_name }}.csv"
+        >
+          <span class="hide-for-large"><i class="fa fa-download " aria-hidden="true"></i></span>
+          <span class="hide-for-small-only hide-for-medium-only">Exporteren als CSV</span>
+        </button>
+      </div>
+    </div>
+    <div ng-if="filterPanelOpen" ng-include="vm.filterPanel" class="row expanded table__filter__panel"></div>
+  </div>
+</div>
+<div class="table__filter__fixed__offset"></div>
+
+<div class="row expanded content-wrapper">
+  <div class="columns">
+    <div class="table__loader" ng-if="vm.tableLoading">
+      <i class="fa fa-refresh fa-spin fa-fw"></i>
+      <span>Container acties laden...</span>
+    </div>
+    <div class="row align-middle">
+      <div class="columns">
+        <p>Totaal aantal gevonden container acties: <b>{{ vm.filteredActions.length }}</b></p>
+      </div>
+      <div class="columns text-right">
+        <button
+          ng-if="vm.containerInfo.con_active !== 'N'"
+          ng-cloak
+          ng-click="vm.disableContainer()"
+          class="button red"
+        >
+          Deactiveer Container
+        </button>
+
+        <button
+          ng-if="vm.containerInfo.con_active === 'N'"
+          ng-cloak
+          ng-click="vm.enableContainer()"
+          class="button green"
+        >
+          Activeer Container
+        </button>
+      </div>
+    </div>
+    <br>
+    <table class="hover" datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.DTColumnDefBuilder">
+      <thead>
+        <tr>
+          <th class="text-center" width="150">Status</th>
+          <th width="500">Probleem</th>
+          <th class="text-center">Foto</th>
+          <th>Datum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          ng-repeat="action in vm.filteredActions = (vm.container | statusDetailFilter: vm.filters.containerStatus | dateDetailFilter: vm.filters.containerDate | filter: keywordfilter)"
+        >
+          <td class="text-center {{ action.status }}">
+            <i ng-if="action.status == 'ok'" class="fa fa-check-circle"><span class="icon__text">a</span></i>
+            <i ng-if="action.status == 'error'" class="fa fa-exclamation-triangle"><span class="icon__text">b</span></i>
+          </td>
+          <td>
+            <span ng-if="!action.problem_one && !action.problem_two">--</span>
+            <span ng-if="action.problem_one || action.problem_two">
+              <span ng-if="action.problem_one">{{ action.problem_one }}, </span>
+              <span ng-if="action.problem_two">{{ action.problem_two }}</span>
+            </span>
+          </td>
+          <td class="text-center">
+            <span ng-if="!action.image_one && !action.image_two">--</span>
+            <a ng-if="action.image_one" ng-click="vm.viewImage(action.image_one, action.problem_one)" href="">
+              <i class="fa fa-picture-o"></i>
+            </a>
+            <a ng-if="action.image_two" ng-click="vm.viewImage(action.image_two, action.problem_two)" href="">
+              <i class="fa fa-picture-o"></i>
+            </a>
+          </td>
+          <td>{{ action.date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

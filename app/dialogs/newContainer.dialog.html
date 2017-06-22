@@ -1,0 +1,61 @@
+<div class="row dialog__header">
+  <div class="small-12 align-self-middle columns">
+    <h6 class="dialog__title">Nieuwe container toevoegen</h6>
+  </div>
+</div>
+
+<div ng-if="vm.containerError" class="dialog__form__error error--main">
+  <p>{{ vm.containerError }}</p>
+</div>
+
+<div class="row dialog__body">
+  <div class="small-12 columns">
+    <form name="newcontainerForm" novalidate>
+      <div class="dialog__form__element">
+        <label>Container Type</label>
+        <label class="container__type__input">
+          <input ng-model="container.type" value="yellow" type="radio" required>
+          <span class="color--yellow"></span>
+        </label>
+        <label class="container__type__input">
+          <input ng-model="container.type" value="orange" type="radio" required>
+          <span class="color--orange"></span>
+        </label>
+        <label class="container__type__input">
+          <input ng-model="container.type" value="black" type="radio" required>
+          <span class="color--black"></span>
+        </label>
+        <label class="container__type__input">
+          <input ng-model="container.type" value="lightgray" type="radio" required>
+          <span class="color--lightgray"></span>
+        </label>
+      </div>
+      <div class="dialog__form__element">
+        <label for="containername">Container Naam <span class="note">Toegestane characters: 0-9 - % . / +</span></label>
+        <input id="containername" class="barcode__text__field" ng-model="container.name" type="text" required>
+      </div>
+      <div class="dialog__form__element text-center">
+        <label>Voorbeeld</label>
+        <div id="print-this" class="text-center dialog__barcode__wrapper">
+          <qrcode
+            version="{{ vm.qrConfig.version }}"
+            error-correction-level="{{ vm.qrConfig.errorCorrectionLevel }}"
+            size="{{ vm.qrConfig.size }}"
+            data="{{ container.name }}"
+          ></qrcode>
+          <p class="dialog__barcodemeta">{{ container.name }}</p>
+        </div>
+      </div>
+      <div class="dialog__form__element text-center">
+        <button ng-disabled="newcontainerForm.$invalid || vm.saving" class="primary" ng-click="vm.addNewContainer(container)">
+          <span ng-if="!vm.saving">Opslaan</span>
+          <span ng-if="vm.saving">
+            <i class="fa fa-refresh fa-spin fa-fw"></i>
+            <span>Bezig met opslaan..</span>
+          </span>
+        </button>
+        <button ng-disabled="newcontainerForm.$invalid || vm.saving" class="primary" ng-click="vm.print()">Printen</button>
+      </div>
+    </form>
+  </div>
+</div>

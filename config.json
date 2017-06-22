@@ -1,0 +1,22 @@
+// G-BRX-BGW
+// DZB5601
+
+oud
+
+<configuration>
+  <system.webServer>
+    <staticContent>
+      <mimeMap fileExtension="woff" mimeType="application/font-woff"/>
+      <mimeMap fileExtension="woff2" mimeType="application/font-woff"/>
+    </staticContent>
+
+    <system.web>
+      <authentication mode="Windows" /> 
+      <authorization> 
+        <allow users="bx.audi.vwg\DZB5601" /> 
+        <deny users="*" /> 
+      </authorization>
+    </system.web>
+
+  </system.webServer>
+</configuration>

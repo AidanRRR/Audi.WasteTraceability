@@ -1,0 +1,120 @@
+<div class="small-12 columns table__filter__panel__content">
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Status:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus, true)" ng-model="vm.filters.containerStatus.all" name="checkbox">Alle
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus['Verkeerd gesorteerd'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus)" ng-model="vm.filters.containerStatus['Verkeerd gesorteerd']" name="checkbox">Verkeerd gesorteerd
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerStatus['Defecte container'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerStatus)" ng-model="vm.filters.containerStatus['Defecte container']" name="checkbox">Defecte container
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Interactie:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerAction.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerAction, true)" ng-model="vm.filters.containerAction.all" name="checkbox">Alle
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerAction['Plaatsen container'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerAction)" ng-model="vm.filters.containerAction['Plaatsen container']" name="checkbox">Plaatsen container
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerAction['Ophalen container'] }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerAction)" ng-model="vm.filters.containerAction['Ophalen container']" name="checkbox">Ophalen container
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Afvalstroom:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerWasteflow.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerWasteflow, true)" ng-model="vm.filters.containerWasteflow.all" name="checkbox">Alle
+      </label>
+      <label
+        ng-repeat="wasteflow in vm.wasteflows"
+        class="table__filter__panel__filter"
+        ng-class="{ 'selected': vm.filters.containerWasteflow[wasteflow.name_nl] }"
+      >
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerWasteflow)" ng-model="vm.filters.containerWasteflow[wasteflow.name_nl]" name="checkbox">{{ wasteflow.name_nl }}
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Container type:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerType.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerType, true)" ng-model="vm.filters.containerType.all" name="checkbox">Alle
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerType.black }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerType)" ng-model="vm.filters.containerType.black" name="checkbox">Zwart
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerType.yellow }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerType)" ng-model="vm.filters.containerType.yellow" name="checkbox">Geel
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerType.orange }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerType)" ng-model="vm.filters.containerType.orange" name="checkbox">Oranje
+      </label>
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerType.gray }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerType)" ng-model="vm.filters.containerType.gray" name="checkbox">Grijs
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Afdeling:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerDepartment.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerDepartment, true, 'dropdown')" ng-model="vm.filters.containerDepartment.all" name="checkbox">Alle
+      </label>
+      <select ng-model="vm.filters.containerDepartment.department" ng-change="vm.updateFilter(vm.filters.containerDepartment)">
+        <option value="" disabled>-- Kies een afdeling --</option>
+        <option ng-repeat="department in vm.departments" value="{{ department.name }}">{{ department.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Gebouw:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerLocation.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerLocation, true, 'dropdown')" ng-model="vm.filters.containerLocation.all" name="checkbox">Alle
+      </label>
+      <select ng-model="vm.filters.containerLocation.location" ng-change="vm.updateFilter(vm.filters.containerLocation)">
+        <option value="" disabled>-- Kies een gebouw --</option>
+        <option ng-repeat="location in vm.locations" value="{{ location.name }}">{{ location.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-2 align-self-middle columns">
+      <label class="table__filter__panel__label">Laatste leging:</label>
+    </div>
+    <div class="columns">
+      <label class="table__filter__panel__filter" ng-class="{ 'selected': vm.filters.containerDate.all }">
+        <input type="checkbox" ng-change="vm.updateFilter(vm.filters.containerDate, true, 'date')" ng-model="vm.filters.containerDate.all" name="checkbox">Alle
+      </label>
+      <datepicker date-format="dd/MM/yyyy">
+        <input ng-model="vm.filters.containerDate.from" ng-change="vm.updateFilter(vm.filters.containerDate)" type="text"/>
+      </datepicker>
+      <datepicker date-format="dd/MM/yyyy">
+        <input ng-model="vm.filters.containerDate.till" ng-change="vm.updateFilter(vm.filters.containerDate)" type="text"/>
+      </datepicker>
+    </div>
+  </div>
+</div>
+<div class="small-12 columns table__filter__panel__actions">
+  <button ng-click="vm.resetFilterValues()">Standaarwaarden herstellen</button>
+</div>

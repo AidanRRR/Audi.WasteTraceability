@@ -1,0 +1,162 @@
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+  border: 0;
+  margin: 0;
+  font-size: 12px;
+  height: 50px;
+  padding: 0 20px;
+  box-shadow: none;
+
+  &:focus,
+  &:active,
+  &:visited {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+  }
+}
+
+select {
+  background-position: right -0.33333rem center;
+}
+
+button,
+.button {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0;
+  height: 50px;
+  padding: 15px 25px;
+  @include anim(.2s);
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &:active,
+  &:focus,
+  &:visited {
+    outline: none;
+  }
+
+  &.primary {
+    background: map-get($foundation-palette, primary);
+    color: $white;
+
+    &:hover {
+      background: darken(map-get($foundation-palette, primary), 10%);
+    }
+  }
+
+  &.secondary {
+    background: map-get($foundation-palette, secondary);
+    color: $black;
+
+    &:hover {
+      background: darken(map-get($foundation-palette, secondary), 10%);
+    }
+  }
+
+  &.white {
+    background: $white;
+    color: $black;
+
+    &:hover {
+      background: map-get($foundation-palette, secondary);
+    }
+  }
+
+  &.red {
+    background: map-get($foundation-palette, alert);
+    color: $white;
+
+    &:hover {
+      background: darken(map-get($foundation-palette, alert), 10%);
+    }
+  }
+
+  &.green {
+    background: map-get($foundation-palette, success);
+    color: $white;
+
+    &:hover {
+      background: darken(map-get($foundation-palette, success), 10%);
+    }
+  }
+
+  &.has--icon {
+    font-size: 16px;
+    vertical-align: bottom;
+  }
+}
+
+.tooltip--custom {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  &:hover {
+    .tooltip__text {
+      visibility: visible;
+    }
+  }
+
+  .tooltip__icon {
+    margin-left: 15px;
+  }
+
+  .tooltip__text {
+    visibility: hidden;
+    width: 180px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -83px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+  }
+}
+
+._720kb-datepicker-calendar {
+  ._720kb-datepicker-calendar-header:nth-child(odd) {
+    background: map-get($foundation-palette, primary);
+
+    ._720kb-datepicker-calendar-month span,
+    a {
+      color: $white;
+    }
+  }
+
+  ._720kb-datepicker-calendar-header:nth-child(even) {
+    background: lighten(map-get($foundation-palette, primary), 10%);
+
+    a {
+      color: $white;
+    }
+  }
+
+  ._720kb-datepicker-calendar-days-header {
+    background: lighten(map-get($foundation-palette, primary), 20%);
+
+    div {
+      color: $white;
+    }
+  }
+}

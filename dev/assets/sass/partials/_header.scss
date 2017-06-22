@@ -1,0 +1,211 @@
+header {
+  position: relative;
+  z-index: 1000;
+  background: $white;
+  height: 80px;
+  width: 100%;
+
+  @include breakpoint(medium down) {
+    height: 60px;
+  }
+
+  .header__logo {
+    max-width: 60px;
+
+    @include breakpoint(medium down) {
+      margin-left: 10px;
+      max-width: 40px;
+    }
+  }
+
+  .header__title {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    @include breakpoint(medium down) {
+      margin: 0 0 0 10px;
+      font-size: 12px;
+    }
+  }
+
+  .header__barcode__actions {
+    height: 80px;
+    width: 250px;
+
+    @include breakpoint(medium down) {
+      width: auto;
+      height: 60px;
+    }
+
+    i {
+      position: relative;
+      font-size: 18px;
+      margin-left: 8px;
+
+      @include breakpoint(medium down) {
+        top: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  .header__barcode__dropdown {
+    position: absolute;
+    right: 15px;
+    top: 80px;
+    width: 350px;
+    background: $white;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+
+    @include breakpoint(medium down) {
+      right: 0;
+      top: 60px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding-top: 10px;
+
+      li {
+        position: relative;
+
+        &.alternate {
+          background: darken($white, 8%);
+        }
+
+        &.warning {
+          background: map-get($foundation-palette, alert);
+
+          a {
+            color: $white;
+
+            &:hover,
+            &:active,
+            &:focus,
+            &:visited {
+              background: darken(map-get($foundation-palette, alert), 5%);
+              outline: none;
+            }
+
+            .fa {
+              color: $white;
+            }
+          }
+        }
+
+        a {
+          text-transform: uppercase;
+          font-weight: bold;
+          @include anim(.2s);
+
+          &.main__link {
+            display: block;
+            padding: 15px 20px;
+          }
+
+          &.new__button {
+            position: absolute;
+            display: inline-block;
+            background: darken($white, 5%);
+            border: 1px solid darken($white, 10%);
+            border-radius: 4px;
+            top: 10px;
+            right: 20px;
+            padding: 4px 10px;
+
+            .fa {
+              margin-left: 5px;
+              margin-right: 0;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+              background: map-get($foundation-palette, success);
+              color: $white;
+            }
+          }
+
+          &:hover,
+          &:active,
+          &:focus {
+            background: map-get($foundation-palette, primary);
+            color: $white;
+            outline: none;
+
+            .fa {
+              color: $white;
+            }
+          }
+
+          .fa {
+            float: right;
+            margin-top: 4px;
+            margin-right: 10px;
+            color: darken($white, 50%);
+            @include anim(.2s);
+          }
+        }
+      }
+    }
+  }
+
+  .header__notification {
+    position: absolute;
+    top: 80px;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    font-size: 14px;
+    color: $white;
+
+    .header__notification__icon {
+      display: inline-block;
+      font-size: 18px;
+      width: 80px;
+      text-align: center;
+    }
+
+    &.success {
+      background: map-get($foundation-palette, success);
+
+      .header__notification__icon {
+        background: darken(map-get($foundation-palette, success), 5%);
+      }
+    }
+
+    &.error {
+      background: map-get($foundation-palette, alert);
+
+      .header__notification__icon {
+        background: darken(map-get($foundation-palette, alert), 5%);
+      }
+    }
+
+    &.warning {
+      background: map-get($foundation-palette, warning);
+
+      .header__notification__icon {
+        background: darken(map-get($foundation-palette, warning), 5%);
+      }
+    }
+
+    @include breakpoint(medium down) {
+      top: 60px;
+      height: 60px;
+      line-height: 60px;
+    }
+
+    .header__notification__message {
+      display: inline-block;
+      margin: 0 0 0 20px;
+      font-weight: bold;
+    }
+  }
+}

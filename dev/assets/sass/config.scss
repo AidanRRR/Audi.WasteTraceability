@@ -1,0 +1,49 @@
+/*==========================================================================
+  Audi Extended Font
+  ==========================================================================*/
+
+  @import "partials/fonts";
+
+/*==========================================================================
+  Overrides and Custom Variables
+  ==========================================================================*/
+
+  @import "partials/variables";
+
+/*==========================================================================
+  Font Awesome
+  ==========================================================================*/
+
+  @import "../../../bower_components/font-awesome/scss/font-awesome";
+
+/*==========================================================================
+  Foundation
+  ==========================================================================*/
+
+  @import '../../../bower_components/foundation-sites/scss/foundation';
+  @include foundation-everything($flex: true);
+
+/*==========================================================================
+  Angular Datepicker
+  ==========================================================================*/
+
+  @import "../../../bower_components/angularjs-datepicker/dist/angular-datepicker.min.scss";
+
+/*==========================================================================
+  Angular Dialog
+  ==========================================================================*/
+
+  @import "../../../bower_components/ng-dialog/css/ngDialog.min.scss";
+  @import "../../../bower_components/ng-dialog/css/ngDialog-theme-default.min.scss";
+
+/*==========================================================================
+  Custom Stylesheets
+  ==========================================================================*/
+
+  @import "partials/mixins";
+  @import "partials/base";
+  @import "partials/formelements";
+  @import "partials/header";
+  @import "partials/tablefilter";
+  @import "partials/tables";
+  @import "partials/dialogs";
